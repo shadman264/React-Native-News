@@ -19,15 +19,15 @@ import Icon2 from 'react-native-vector-icons/Entypo';
 export default class AwesomeProject extends Component {
   render() {
     return (
-        <Container>
+        <Container style={{flex:1}}>
             <Header style={{backgroundColor: "#5a2fd1"}}>
-                <Left>
+                <Left style={{marginLeft: "3%", marginRight: "13%"}}>
                     <Button transparent>
-                        <Icon name='ios-menu' />
+                        <Icon2 name='menu' size={28}  color="#fff"/>
                     </Button>
                 </Left>
-                <Body style={{alignContent: "center"}}>
-                    <Title style={{alignContent: "center"}}>NEWS</Title>
+                <Body style={{flex:1, flexDirection: "row", justifyContent: "center",alignItems: 'center'}}>
+                    <Title style={{flex:1, flexDirection: "row", justifyContent: "center",alignItems: 'center', fontSize: 30}}>NEWS</Title>
                 </Body>
                 <Right>
                     <Button transparent>

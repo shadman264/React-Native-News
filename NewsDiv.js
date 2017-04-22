@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { Container, Content, Card, CardItem, Text, Body, Thumbnail,Left } from 'native-base';
 import Icon1 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/Entypo';
+import Icon3 from 'react-native-vector-icons/Foundation';
 
 export default class NewsDivs extends Component {
   render() {
@@ -36,14 +37,17 @@ export default class NewsDivs extends Component {
                         </Left>
                     </CardItem>
 
-                    <CardItem>
-                        <Text>
+                    <CardItem >
+                        <Text style={{paddingLeft: "3%", paddingBottom: "6%", paddingRight: "3%" }}>
                             {this.props.textData}
                         </Text>
                     </CardItem>
 
-                    <CardItem header>
-                        <Text>Card Footer</Text>
+                    <CardItem header style={{backgroundColor: "#e6e4e2"}}>
+                        <View style={{flex: 1, flexDirection: "row", paddingLeft: "3%"}}>
+                            <Icon3 name="comments" size={28} style={{color: "grey"}}/>
+                            <Text note>  53 Comments</Text>
+                        </View>
                     </CardItem>
                </Card>
             </Content>
