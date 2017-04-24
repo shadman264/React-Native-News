@@ -13,30 +13,10 @@ export default class NewsDivs extends Component {
         constructor(props) {
                 super(props);
                 this.state = {
-                        headlineHeight: 0,
-                        headlineDimensionCalc: true,
 
-                        footerHeight: 0,
-                        footerDimensionCalc: true,
                 };
         }
 
-        findHeadlineDimesions(layout){
-                const {x, y, width, height} = layout;
-                let height2 = 2*height;
-                this.setState({
-                        headlineHeight: height2,
-                        headlineDimensionCalc: true,
-                });
-        }
-
-        findFooterDimesions(layout){
-                const {x, y, width, height} = layout;
-                this.setState({
-                        footerHeight: height,
-                        footerDimensionCalc: true,
-                });
-        }
 
         render() {
 
@@ -45,8 +25,9 @@ export default class NewsDivs extends Component {
 //                s = s.concat("...");
                 let ScreenHeight = Dimensions.get("window").height;
                 let topHeadlineHeight = ScreenHeight * .15;
-                let bottomFooterHeight = ScreenHeight * .1;
+                let bottomFooterHeight = ScreenHeight * .06;
                 let midArticleHeight = ScreenHeight * .75 - topHeadlineHeight;
+                let midArticleBottomMargin = ScreenHeight * .04;
 
                 console.log("ALL HEIGHTS :" + ScreenHeight+" " + topHeadlineHeight+" " + bottomFooterHeight+" " + midArticleHeight);
 
@@ -54,7 +35,7 @@ export default class NewsDivs extends Component {
                 //CREATE TOP HEADLINE DIV
                 let topHeadline =
                         <Content style={{height : topHeadlineHeight}} scrollEnabled={ false }>
-                                <Grid onLayout={(event) => { this.findHeadlineDimesions(event.nativeEvent.layout) }}>
+                                <Grid>
                                     <Col style={{height: 100, width: '25%', paddingLeft: '6.5%', paddingTop: '5%' }}>
                                         <Thumbnail square source={require('./img//newsThumbnail3.png')}/>
                                     </Col>
@@ -78,7 +59,7 @@ export default class NewsDivs extends Component {
 
                 //CREATE BOTTOM COMMENT FOOTER
                 let bottomCommentBox =
-                        <Footer style={{height : bottomFooterHeight}} onLayout={(event) => { this.findFooterDimesions(event.nativeEvent.layout) }}>
+                        <Footer style={{height : bottomFooterHeight}}>
                             <FooterTab>
                                 <Button full>
                                     <Text>Footer</Text>
@@ -92,31 +73,25 @@ export default class NewsDivs extends Component {
                 ScreenHeight = Dimensions.get("window").height - parseFloat(this.state.headlineHeight) - parseFloat(this.state.footerHeight);
                 //console.log("SECOND VAL : "+ ScreenHeight);
 
-                let midNewsArticle;
-                if(this.state.footerDimensionCalc==true && this.state.headlineDimensionCalc==true){
-                        //console.log("THIRD VAL : "+ ScreenHeight);
-                        midNewsArticle =
+                let midNewsArticle =
 
-                                    <Content style={{backgroundColor: '#202020', paddingLeft: '6%', paddingRight: '6%', height: midArticleHeight}} scrollEnabled={ true }>
-                                        <Text>
-                                                Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
-                                                Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
-                                                Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
-                                                Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
-                                                Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
-                                                Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
-                                                Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
-                                        </Text>
-                                    </Content>
-
-
-                }
+                        <Content style={{marginBottom: midArticleBottomMargin,height: midArticleHeight}} scrollEnabled={ true }>
+                                <Text style={{paddingLeft: '6%', paddingRight: '6%', paddingTop: '3%', paddingBottom: '10%'}}>
+                                        Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
+                                        Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
+                                        Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
+                                        Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
+                                        Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
+                                        Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
+                                        Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
+                                </Text>
+                        </Content>
 
 
                 //******************to print console.log you have to type "react-native log-android"******************
                 return (
-                    <Container style={{}}>
-                            <Content style={{backgroundColor: 'yellow'}} scrollEnabled={ false }>
+                    <Container>
+                            <Content scrollEnabled={ false }>
                                 {topHeadline}
                                 {midNewsArticle}
                                 {bottomCommentBox}
