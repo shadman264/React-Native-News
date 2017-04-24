@@ -77,7 +77,6 @@ export default class AwesomeProject extends Component {
 
             <Content style={{margin: "3%", flex: 1, height: 100}}>
                 <SingleNewsDiv onPress={this.newsDivPressFunc.bind(this)} textData="Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options."/>
-                <NewsDiv textData="Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options."/>
 
             </Content>
 
