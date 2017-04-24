@@ -54,8 +54,12 @@ export default class AwesomeProject extends Component {
 //      console.log(e.code, e.reason);
 //    };
 
+//        <SingleNewsDiv headline="Latest News 2" time="5 Hours" attachmentTotal="4" article={textData} commentTotal="55"/>
 //    <NewsDiv textData="Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options."/>
 //                    <NewsDiv textData="Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options."/>
+
+        let textData = "Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.                                                         Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options. Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options. Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options."
+
 
     return (
         <Container style={{flex:1}}>
@@ -76,7 +80,7 @@ export default class AwesomeProject extends Component {
             </Header>
 
             <Content style={{margin: "3%",flex:1,flexDirection:'column'}} scrollEnabled={ false }>
-                <SingleNewsDiv onPress={this.newsDivPressFunc.bind(this)} textData="Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options."/>
+                <SingleNewsDiv headline="Latest News 2" time="5 Hours" attachmentTotal="4" article={textData} commentTotal="55"/>
 
             </Content>
 
