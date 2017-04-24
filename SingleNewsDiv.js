@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { View, Dimensions } from 'react-native';
-import { Container, Content, Thumbnail,Text,Footer, FooterTab,Button} from 'native-base';
+import { Container, Content, Thumbnail,Text,Footer, FooterTab,Button,Fab,Icon} from 'native-base';
 import { Col, Row, Grid} from 'react-native-easy-grid';
 import Icon1 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/Entypo';
@@ -13,7 +13,7 @@ export default class NewsDivs extends Component {
         constructor(props) {
                 super(props);
                 this.state = {
-
+                    active: false,
                 };
         }
 
@@ -60,19 +60,37 @@ export default class NewsDivs extends Component {
                 //CREATE BOTTOM COMMENT FOOTER
                 let bottomCommentBox =
                         <Footer style={{height : bottomFooterHeight}}>
-                            <FooterTab>
-                                <Button full>
-                                    <Text>Footer</Text>
-                                </Button>
+                            <FooterTab style={{backgroundColor: "#e6e4e2"}}>
+                                <View style={{flex: 1, flexDirection: "row", paddingLeft: "6%", paddingTop: '2%'}}>
+                                    <Icon3 name="comments" size={28} style={{color: "grey"}}/>
+                                    <Text note>  53 Comments</Text>
+                                </View>
                             </FooterTab>
                         </Footer>
 
-                //CREATE MIDDLE NEWS ARTICLE DIV
-                //let ScreenHeight = Dimensions.get("window").height - Dimensions.get("window").height*0.38;
-                //console.log("FIRST VAL : "+ ScreenHeight);
-                ScreenHeight = Dimensions.get("window").height - parseFloat(this.state.headlineHeight) - parseFloat(this.state.footerHeight);
-                //console.log("SECOND VAL : "+ ScreenHeight);
+                //CREATE FLOATING COMMENT BUTTON
+                let bottomFloatingCommentButton =
+                        <Fab
+                                active={this.state.active}
+                                direction="up"
+                                containerStyle={{ marginLeft: 10 }}
+                                style={{ backgroundColor: '#5067FF' }}
+                                position="bottomRight"
+                                onPress={() => {console.log("I AM PRESSED!!!!!!!!!!!!!!");this.setState({ active: !this.state.active });}}>
+                                <Icon name="share" />
+                                <Button style={{ backgroundColor: '#34A34F' }}>
+                                    <Icon name="logo-whatsapp" />
+                                </Button>
+                                <Button style={{ backgroundColor: '#3B5998' }}>
+                                    <Icon name="logo-facebook" />
+                                </Button>
+                                <Button disabled style={{ backgroundColor: '#DD5144' }}>
+                                    <Icon name="mail" />
+                                </Button>
+                        </Fab>
 
+
+                //CREATE MIDDLE NEWS ARTICLE DIV
                 let midNewsArticle =
 
                         <Content style={{marginBottom: midArticleBottomMargin,height: midArticleHeight}} scrollEnabled={ true }>
@@ -95,6 +113,7 @@ export default class NewsDivs extends Component {
                                 {topHeadline}
                                 {midNewsArticle}
                                 {bottomCommentBox}
+                                {bottomFloatingCommentButton}
                             </Content>
                     </Container>
                 );
