@@ -70,7 +70,7 @@ export default class NewsDivs extends Component {
                             <FooterTab style={{backgroundColor: "#e6e4e2"}}>
                                 <View style={{flex: 1, flexDirection: "row", paddingLeft: "6%", paddingTop: '2%'}}>
                                     <Icon3 name="comments" size={28} style={{color: "grey"}}/>
-                                    <Text note>  {this.props.commentTotal} Comments</Text>
+                                    <Text note>  {this.props.commentsTotal} Comments</Text>
                                 </View>
                             </FooterTab>
                         </Footer>

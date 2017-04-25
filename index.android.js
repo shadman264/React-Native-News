@@ -19,11 +19,11 @@ import Icon2 from 'react-native-vector-icons/Entypo';
 
 export default class AwesomeProject extends Component {
 
-    newsDivPressFunc(){
+        newsDivPressFunc(){
         console.log("I am PRESSSED");
-    }
+        }
 
-  render() {
+        render() {
 
 //    console.log("I am i");
 
@@ -60,55 +60,59 @@ export default class AwesomeProject extends Component {
 
         let textData = "Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.                                                         Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options. Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options. Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options."
 
+        let header =
+                <Header style={{backgroundColor: "#5a2fd1"}}>
+                        <Left style={{marginLeft: "3%", marginRight: "13%"}}>
+                            <Button transparent>
+                                <Icon2 name='menu' size={28}  color="#fff"/>
+                            </Button>
+                        </Left>
+                        <Body style={{flex:1, flexDirection: "row", justifyContent: "center",alignItems: 'center'}}>
+                            <Title style={{flex:1, flexDirection: "row", justifyContent: "center",alignItems: 'center', fontSize: 30}}>NEWS</Title>
+                        </Body>
+                        <Right>
+                            <Button transparent>
+                                <Icon2 name="dots-three-vertical" size={20} color="#fff" />
+                            </Button>
+                        </Right>
+                </Header>
 
-    return (
-        <Container style={{flex:1}}>
-            <Header style={{backgroundColor: "#5a2fd1"}}>
-                <Left style={{marginLeft: "3%", marginRight: "13%"}}>
-                    <Button transparent>
-                        <Icon2 name='menu' size={28}  color="#fff"/>
-                    </Button>
-                </Left>
-                <Body style={{flex:1, flexDirection: "row", justifyContent: "center",alignItems: 'center'}}>
-                    <Title style={{flex:1, flexDirection: "row", justifyContent: "center",alignItems: 'center', fontSize: 30}}>NEWS</Title>
-                </Body>
-                <Right>
-                    <Button transparent>
-                        <Icon2 name="dots-three-vertical" size={20} color="#fff" />
-                    </Button>
-                </Right>
-            </Header>
+        return (
+                <Container style={{flex:1}}>
 
-            <Content style={{margin: "3%",flex:1,flexDirection:'column'}} scrollEnabled={ false }>
-                <SingleNewsDiv headline="Latest News 2" time="5 Hours" attachmentTotal="4" article={textData} commentTotal="55"/>
+                        {header}
+                        <Content style={{margin: "3%",flex:1,flexDirection:'column'}} scrollEnabled={ true }>
+                                <NewsDiv headline="Latest News 2" time="5 Hours" attachmentTotal="4" abstract={textData} commentsTotal="55"/>
+                                <NewsDiv headline="Latest News 2" time="5 Hours" attachmentTotal="4" abstract={textData} commentsTotal="55"/>
+                                <NewsDiv headline="Latest News 2" time="5 Hours" attachmentTotal="4" abstract={textData} commentsTotal="55"/>
 
-            </Content>
+                        </Content>
 
 
 
-        </Container>
+                </Container>
 
-    );
-  }
+                );
+        }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+        container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+        },
+        welcome: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10,
+        },
+        instructions: {
+        textAlign: 'center',
+        color: '#333333',
+        marginBottom: 5,
+        },
 });
 
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
