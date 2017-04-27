@@ -1,19 +1,19 @@
 
 
 import React, { Component } from 'react';
-import { View, Dimensions,Modal,TextInput } from 'react-native';
+import { View, Dimensions,Modal,TextInput, BackAndroid } from 'react-native';
 import { Container, Content, Thumbnail,Text,Footer, FooterTab,Button,Fab,Icon,Item,Input} from 'native-base';
 import { Col, Row, Grid} from 'react-native-easy-grid';
 import Icon1 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/Entypo';
 import Icon3 from 'react-native-vector-icons/Foundation';
 
-import ModalBox from './ModalBox';
 
 export default class NewsDivs extends Component {
 
         constructor(props) {
                 super(props);
+                this.handleBackButton = this.handleBackButton.bind(this);
                 this.state = {
                     visible: false,
                     modalVisible: false,
@@ -24,12 +24,21 @@ export default class NewsDivs extends Component {
                 };
         }
 
-        openModalDialog(){
-                console.log("clicked!!!!!!!!");
-                this.setState({
-                        visible: !this.state.visible,
-                });
+        componentDidMount() {
+                BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton);
         }
+
+        componentWillUnmount() {
+                BackAndroid.removeEventListener('hardwareBackPress', this.handleBackButton);
+        }
+
+        handleBackButton() {
+                console.log('Back button is pressed');
+                this.props.navigate();
+                return true;
+        }
+
+
 
 
         render() {
@@ -37,6 +46,7 @@ export default class NewsDivs extends Component {
 //                var s = this.props.textData.substring(0, 480);
 //                if(this.props.textData.length>480)
 //                s = s.concat("...");
+
                 let ScreenHeight = Dimensions.get("window").height;
                 let topHeadlineHeight = ScreenHeight * .15;
                 let bottomFooterHeight = ScreenHeight * .06;

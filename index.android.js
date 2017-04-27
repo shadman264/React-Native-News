@@ -8,7 +8,8 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  View
+  View,
+  BackAndroid,
 } from 'react-native';
 import { Container,Header,Left,Right,Body,Icon,Title, Button, Text, Content} from 'native-base';
 import NewsDiv from './NewsDiv';
@@ -33,6 +34,10 @@ export default class AwesomeProject extends Component {
                 };
 
         }
+
+
+
+
 
         scrollHandler(headline,time,attachmentTotal,abstract,commentsTotal) {
                 //e.preventDefault();
@@ -65,6 +70,12 @@ export default class AwesomeProject extends Component {
                 }
 
 
+        }
+
+        navigate(){
+                this.setState({
+                        scrollable: true
+                })
         }
 
 
@@ -135,7 +146,7 @@ export default class AwesomeProject extends Component {
 
         let singleNewsPage =
                <Content style={{flex:1,flexDirection:'column'}} scrollEnabled={ false }>
-                       <SingleNewsDiv hasScrolled={this.state.hasScrolled} headline={this.state.headline} time={this.state.time} attachmentTotal={this.state.attachmentTotal} article={this.state.abstract} commentsTotal={this.state.commentsTotal}/>
+                       <SingleNewsDiv navigate={this.navigate.bind(this)} hasScrolled={this.state.hasScrolled} headline={this.state.headline} time={this.state.time} attachmentTotal={this.state.attachmentTotal} article={this.state.abstract} commentsTotal={this.state.commentsTotal}/>
                </Content>
 
          let bigBoss;

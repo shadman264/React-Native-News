@@ -13,7 +13,8 @@ export default class NewsDivs extends Component {
                 super(props);
                 this.state = {
                     clicked: false,
-                    margin: "3%"
+                    margin: "3%",
+
 
                 };
         }
