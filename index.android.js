@@ -81,7 +81,7 @@ export default class AwesomeProject extends Component {
                 <Container style={{flex:1}}>
 
                         {header}
-                        <Content style={{margin: "3%",flex:1,flexDirection:'column'}} scrollEnabled={ false }>
+                        <Content style={{flex:1,flexDirection:'column'}} scrollEnabled={ false }>
                                 <SingleNewsDiv headline="Latest News 2" time="5 Hours" attachmentTotal="4" article={textData} commentsTotal="55"/>
 
                         </Content>

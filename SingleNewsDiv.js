@@ -18,6 +18,8 @@ export default class NewsDivs extends Component {
                     visible: false,
                     modalVisible: false,
                     backgroundColor: "white",
+                    cmtBackgroundColor: "#e6e4e2",
+                    margin: "3%",
 
                 };
         }
@@ -72,7 +74,7 @@ export default class NewsDivs extends Component {
                 //CREATE BOTTOM COMMENT FOOTER
                 let bottomCommentBox =
                         <Footer style={{height : bottomFooterHeight}}>
-                            <FooterTab style={{backgroundColor: "#e6e4e2"}}>
+                            <FooterTab style={{backgroundColor: this.state.cmtBackgroundColor}}>
                                 <View style={{flex: 1, flexDirection: "row", paddingLeft: "6%", paddingTop: '2%'}}>
                                     <Icon3 name="comments" size={28} style={{color: "grey"}}/>
                                     <Text note>  {this.props.commentsTotal} Comments</Text>
@@ -88,7 +90,7 @@ export default class NewsDivs extends Component {
                                         animationType={"slide"}
                                         transparent={true}
                                         visible={this.state.modalVisible}
-                                        onRequestClose={() => {alert("Modal has been closed.")}}
+                                        onRequestClose={() => {alert(" has been closed.")}}
 
                                         >
 
@@ -104,7 +106,7 @@ export default class NewsDivs extends Component {
                                                 onKeyPress={() => this.setState({ modalMarginTop: "10%", modalMarginBottom: "10%"})}/>
 
                                             <Button full style={{ borderRadius: 6, backgroundColor: "#5a2fd1"}}
-                                                onPress={() => this.setState({ modalVisible: false, backgroundColor: "white"})}>
+                                                onPress={() => this.setState({ modalVisible: false, backgroundColor: "white", cmtBackgroundColor: "#e6e4e2", margin: "3%"})}>
                                                 <Text style={{color: "white"}}>SUBMIT</Text>
                                             </Button>
                                         </Content>
@@ -126,7 +128,7 @@ export default class NewsDivs extends Component {
                                 containerStyle={{ marginLeft: 10 }}
                                 style={{ backgroundColor: '#5067FF' }}
                                 position="bottomRight"
-                                onPress={() => this.setState({ modalVisible: true, backgroundColor: "#61605f"})}>
+                                onPress={() => this.setState({ modalVisible: true, backgroundColor: "#61605f", cmtBackgroundColor: "#61605f", margin: 0})}>
                                         <Icon1 name="message" />
 
                         </Fab>
@@ -146,7 +148,7 @@ export default class NewsDivs extends Component {
 
                 //******************to print console.log you have to type "react-native log-android"******************
                 return (
-                    <Container style={{backgroundColor: this.state.backgroundColor}}>
+                    <Container style={{backgroundColor: this.state.backgroundColor, margin: this.state.margin}}>
                             <Content scrollEnabled={ false }>
                                 {topHeadline}
                                 {midNewsArticle}

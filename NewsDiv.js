@@ -58,7 +58,7 @@ export default class NewsDivs extends Component {
 
 
                 return (
-                        <Content>
+                        <Content style={{margin: "3%"}}>
                                 <Card>
 
                                         {headline}
