@@ -17,7 +17,8 @@ export default class NewsDivs extends Component {
                 this.state = {
                     visible: false,
                     modalVisible: false,
-                    backgroundColor: "white"
+                    backgroundColor: "white",
+
                 };
         }
 
@@ -90,22 +91,24 @@ export default class NewsDivs extends Component {
                                         onRequestClose={() => {alert("Modal has been closed.")}}
 
                                         >
-                                                <Container>
-                                                        <Content style={{ borderRadius: 6, margin: "10%", marginTop: "45%", marginBottom: "45%", padding: "3%", backgroundColor: "white"}}>
 
-                                                            <TextInput
-                                                                style={{height: 40, borderColor: '#5a2fd1', borderWidth: 1, borderRadius: 6, height: 120, marginBottom: "6%"}}
-                                                                onChangeText={(text) => this.setState({text})}
-                                                                value={this.state.text}
-                                                                multiline={true}
-                                                                numberOfLines = {4}
-                                                                underlineColorAndroid="transparent"/>
+                                        <Content style={{ borderRadius: 6, margin: "10%",position: "absolute",width: "80%", marginTop: "33%", marginBottom: "67%", padding: "3%", backgroundColor: "white"}}>
 
-                                                            <Button full style={{ borderRadius: 6, backgroundColor: "#5a2fd1"}}>
-                                                                <Text style={{color: "white"}}>SUBMIT</Text>
-                                                            </Button>
-                                                        </Content>
-                                                </Container>
+                                            <TextInput
+                                                style={{height: 40, borderColor: '#5a2fd1', borderWidth: 1, borderRadius: 6, height: 120, marginBottom: "6%", textAlignVertical: 'top'}}
+                                                onChangeText={(text) => this.setState({text})}
+                                                value={this.state.text}
+                                                multiline={true}
+                                                numberOfLines = {4}
+                                                underlineColorAndroid="transparent"
+                                                onKeyPress={() => this.setState({ modalMarginTop: "10%", modalMarginBottom: "10%"})}/>
+
+                                            <Button full style={{ borderRadius: 6, backgroundColor: "#5a2fd1"}}
+                                                onPress={() => this.setState({ modalVisible: false, backgroundColor: "white"})}>
+                                                <Text style={{color: "white"}}>SUBMIT</Text>
+                                            </Button>
+                                        </Content>
+
 
 
 
@@ -123,7 +126,7 @@ export default class NewsDivs extends Component {
                                 containerStyle={{ marginLeft: 10 }}
                                 style={{ backgroundColor: '#5067FF' }}
                                 position="bottomRight"
-                                onPress={() => this.setState({ modalVisible: true, backgroundColor: "#61605f" })}>
+                                onPress={() => this.setState({ modalVisible: true, backgroundColor: "#61605f"})}>
                                         <Icon1 name="message" />
 
                         </Fab>
