@@ -43,12 +43,23 @@ export default class NewsDivs extends Component {
                 let midArticleHeight = ScreenHeight * .75 - topHeadlineHeight;
                 let midArticleBottomMargin = ScreenHeight * .04;
 
+                let scrollMarginTop;
+                console.log("value of hasScrolled: ");
+                console.log(this.props.hasScrolled);
+                if(this.props.hasScrolled){
+                        scrollMarginTop = "18%";
+                }
+                else{
+                        scrollMarginTop = "0%";
+                }
+
+
                 console.log("ALL HEIGHTS :" + ScreenHeight+" " + topHeadlineHeight+" " + bottomFooterHeight+" " + midArticleHeight);
 
 
                 //CREATE TOP HEADLINE DIV
                 let topHeadline =
-                        <Content style={{height : topHeadlineHeight}} scrollEnabled={ false }>
+                        <Content style={{height : topHeadlineHeight, marginTop: scrollMarginTop}} scrollEnabled={ false }>
                                 <Grid>
                                     <Col style={{height: 100, width: '25%', paddingLeft: '6.5%', paddingTop: '5%' }}>
                                         <Thumbnail square source={require('./img//newsThumbnail3.png')}/>
