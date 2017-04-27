@@ -128,7 +128,7 @@ export default class NewsDivs extends Component {
                                 containerStyle={{ marginLeft: 10 }}
                                 style={{ backgroundColor: '#5067FF' }}
                                 position="bottomRight"
-                                onPress={() => this.setState({ modalVisible: true, backgroundColor: "#61605f", cmtBackgroundColor: "#61605f", margin: 0})}>
+                                onPress={() => this.setState({ modalVisible: true, backgroundColor: "rgba(0,0,0,0.6)", cmtBackgroundColor: "rgba(0,0,0,0.6)", margin: 0})}>
                                         <Icon1 name="message" />
 
                         </Fab>
