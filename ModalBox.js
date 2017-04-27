@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Text, TouchableHighlight, View } from 'react-native';
+import {Container, Content, InputGroup, Input, Icon, Item, Button} from 'native-base'
 
 export default class ModalExample extends Component {
         constructor(props) {
@@ -16,38 +17,45 @@ export default class ModalExample extends Component {
 
         render() {
                 return (
-                <View style={{marginTop: 22, }}>
+                <Container style={{marginTop: 22}}>
+                        <Content style={{backgroundColor: "#61605f"}}>
+                                <Modal
+                                animationType={"slide"}
+                                transparent={true}
+                                visible={this.state.modalVisible}
+                                onRequestClose={() => {alert("Modal has been closed.")}}
 
-                        <Modal
-                        animationType={"slide"}
-                        transparent={true}
-                        visible={this.state.modalVisible}
-                        onRequestClose={() => {alert("Modal has been closed.")}}
+                                >
+                                        <Container>
+                                                <Content style={{ borderRadius: 6, margin: "10%", marginTop: "45%",marginBottom: "45%", padding: "3%", backgroundColor: "white"}}>
 
-                        >
-                                <View >
-                                        <View style={{margin: "10%", backgroundColor: "yellow"}}>
-                                                <Text>Hello World!</Text>
+                                                    <Item regular style={{ borderRadius: 6, height: 120, marginBottom: "6%"}}>
+                                                        <Input placeholder='Rounded Textbox'/>
+                                                    </Item>
+                                                    <Button full style={{ borderRadius: 6, backgroundColor: "#5a2fd1"}} onClick={() => {
+                                                    this.setModalVisible(!this.state.modalVisible)
+                                                    }}>
+                                                            <Text style={{color: "white"}}>SUBMIT</Text>
+                                                    </Button>
+                                                </Content>
+                                        </Container>
 
-                                                <TouchableHighlight onPress={() => {
-                                                this.setModalVisible(!this.state.modalVisible)
-                                                }}>
-                                                        <Text>Hide Modal</Text>
-                                                </TouchableHighlight>
 
-                                        </View>
-                                </View>
-                        </Modal>
-                        <Text>
-                                The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.
-                        </Text>
-                        <TouchableHighlight onPress={() => {
-                        this.setModalVisible(true)
-                        }}>
-                                <Text>Show Modal</Text>
-                        </TouchableHighlight>
 
-                </View>
+
+
+                                </Modal>
+                                <Text>
+                                        The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.The Modal component is a simple way to present content above an enclosing view.
+                                </Text>
+                                <TouchableHighlight onPress={() => {
+                                this.setModalVisible(true)
+                                }}>
+                                        <Text>Show Modal</Text>
+                                </TouchableHighlight>
+
+                        </Content>
+                </Container>
         );
   }
 }

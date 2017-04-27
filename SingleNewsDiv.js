@@ -1,12 +1,14 @@
 
 
 import React, { Component } from 'react';
-import { View, Dimensions } from 'react-native';
-import { Container, Content, Thumbnail,Text,Footer, FooterTab,Button,Fab,Icon,Modal} from 'native-base';
+import { View, Dimensions,Modal,TextInput } from 'react-native';
+import { Container, Content, Thumbnail,Text,Footer, FooterTab,Button,Fab,Icon,Item,Input} from 'native-base';
 import { Col, Row, Grid} from 'react-native-easy-grid';
 import Icon1 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/Entypo';
 import Icon3 from 'react-native-vector-icons/Foundation';
+
+import ModalBox from './ModalBox';
 
 export default class NewsDivs extends Component {
 
@@ -14,6 +16,8 @@ export default class NewsDivs extends Component {
                 super(props);
                 this.state = {
                     visible: false,
+                    modalVisible: false,
+                    backgroundColor: "white"
                 };
         }
 
@@ -77,13 +81,38 @@ export default class NewsDivs extends Component {
 
 
                 //CREATE MODAL DIALOG BOX
-                let modalDialog;
-                if(this.state.visible){
-                        modalDialog =
-                                <Content>
-                                        <Text>BRO BRO</Text>
-                                </Content>
-                }
+                let modalBox =
+                        <Content>
+                                <Modal
+                                        animationType={"slide"}
+                                        transparent={true}
+                                        visible={this.state.modalVisible}
+                                        onRequestClose={() => {alert("Modal has been closed.")}}
+
+                                        >
+                                                <Container>
+                                                        <Content style={{ borderRadius: 6, margin: "10%", marginTop: "45%", marginBottom: "45%", padding: "3%", backgroundColor: "white"}}>
+
+                                                            <TextInput
+                                                                style={{height: 40, borderColor: '#5a2fd1', borderWidth: 1, borderRadius: 6, height: 120, marginBottom: "6%"}}
+                                                                onChangeText={(text) => this.setState({text})}
+                                                                value={this.state.text}
+                                                                multiline={true}
+                                                                numberOfLines = {4}
+                                                                underlineColorAndroid="transparent"/>
+
+                                                            <Button full style={{ borderRadius: 6, backgroundColor: "#5a2fd1"}}>
+                                                                <Text style={{color: "white"}}>SUBMIT</Text>
+                                                            </Button>
+                                                        </Content>
+                                                </Container>
+
+
+
+
+
+                                </Modal>
+                        </Content>
 
 
                 //CREATE FLOATING COMMENT BUTTON
@@ -94,17 +123,9 @@ export default class NewsDivs extends Component {
                                 containerStyle={{ marginLeft: 10 }}
                                 style={{ backgroundColor: '#5067FF' }}
                                 position="bottomRight"
-                                onPress={() => this.setState({ visible: !this.state.visible })}>
+                                onPress={() => this.setState({ modalVisible: true, backgroundColor: "#61605f" })}>
                                         <Icon1 name="message" />
-                                        <Button style={{ backgroundColor: '#34A34F' }}>
-                                            <Icon name="logo-whatsapp" />
-                                        </Button>
-                                        <Button style={{ backgroundColor: '#3B5998' }}>
-                                            <Icon name="logo-facebook" />
-                                        </Button>
-                                        <Button disabled style={{ backgroundColor: '#DD5144' }}>
-                                            <Icon name="mail" />
-                                        </Button>
+
                         </Fab>
 
 
@@ -118,15 +139,17 @@ export default class NewsDivs extends Component {
                         </Content>
 
 
+
+
                 //******************to print console.log you have to type "react-native log-android"******************
                 return (
-                    <Container>
+                    <Container style={{backgroundColor: this.state.backgroundColor}}>
                             <Content scrollEnabled={ false }>
                                 {topHeadline}
                                 {midNewsArticle}
                                 {bottomCommentBox}
                                 {bottomFloatingCommentButton}
-                                {modalDialog}
+                                {modalBox}
                             </Content>
                     </Container>
                 );
