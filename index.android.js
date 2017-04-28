@@ -16,6 +16,8 @@ import NewsDiv from './NewsDiv';
 import SingleNewsDiv from './SingleNewsDiv';
 import Icon2 from 'react-native-vector-icons/Entypo';
 
+import WebsocketClient from './WebsocketClient';
+
 
 
 export default class AwesomeProject extends Component {
@@ -81,38 +83,6 @@ export default class AwesomeProject extends Component {
 
         render() {
 
-//    console.log("I am i");
-
-//    var ws = new WebSocket('ws://durbintest.pro/websocket');
-//    var data = "";
-//    ws.onopen = () => {
-//      // connection opened
-//        console.log("*******************FROM OPEN******************");
-//      ws.send('fetch.news'); // send a message
-//
-//
-//    };
-//    ws.onmessage = (e) => {
-//      // a message was received
-//      console.log("*******************FROM MSG******************");
-//      console.log(e.data);
-//    };
-//
-//    ws.onerror = (e) => {
-//      // an error occurred
-//      console.log("*******************FROM ERROR******************");
-//      console.log(e.message);
-//    };
-//
-//    ws.onclose = (e) => {
-//      // connection closed
-//      console.log("*******************FROM CLOSE******************");
-//      console.log(e.code, e.reason);
-//    };
-
-//        <SingleNewsDiv headline="Latest News 2" time="5 Hours" attachmentTotal="4" article={textData} commentTotal="55"/>
-//    <NewsDiv textData="Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options."/>
-//                    <NewsDiv textData="Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options."/>
 
         let textData = "Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options."
 
@@ -142,6 +112,8 @@ export default class AwesomeProject extends Component {
                <Content style={{flex:1,flexDirection:'column'}} scrollEnabled={ this.state.scrollable} onScroll={this.handleScroll.bind(this)}>
                        <NewsDiv headline="Latest News 1" time="4 Hours" attachmentTotal="7" abstract={textData} commentsTotal="10" scrollHandler = {this.scrollHandler.bind(this)}/>
                        <NewsDiv headline="Latest News 2" time="5 Hours" attachmentTotal="8" abstract={textData} commentsTotal="11" scrollHandler = {this.scrollHandler.bind(this)}/>
+                       <NewsDiv headline="Latest News 3" time="6 Hours" attachmentTotal="9" abstract={textData} commentsTotal="12" scrollHandler = {this.scrollHandler.bind(this)}/>
+
                </Content>
 
         let singleNewsPage =
@@ -162,15 +134,11 @@ export default class AwesomeProject extends Component {
 
         return (
                 <Container style={{flex:1}}>
-
                         {header}
                         {bigBoss}
-
-
-
                 </Container>
 
-                );
+        );
         }
 }
 

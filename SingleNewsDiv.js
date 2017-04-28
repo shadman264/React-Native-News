@@ -111,7 +111,7 @@ export default class NewsDivs extends Component {
                                         animationType={"slide"}
                                         transparent={true}
                                         visible={this.state.modalVisible}
-                                        onRequestClose={() => {alert(" has been closed.")}}
+
 
                                         >
 
