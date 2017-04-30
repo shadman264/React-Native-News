@@ -39,7 +39,7 @@ class WebsocketClient extends Component {
         //console.log(settings);
         //console.log(todosReady);
         //console.log("Hi ends: ");
-        //console.log(Meteor.getData());
+        console.log(Meteor.getData());
         //console.log(Meteor.collection('fetch.news').get('hYhHcDXNWhwWQSfab'));
 
         return(

@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { View, Dimensions,Modal,TextInput, BackAndroid } from 'react-native';
-import { Container, Content, Thumbnail,Text,Footer, FooterTab,Button,Fab,Icon,Item,Input} from 'native-base';
+import { Container, Content, Thumbnail,Text,Footer, FooterTab,Button,Fab,Icon,Item,Input,Left,CardItem,Body} from 'native-base';
 import { Col, Row, Grid} from 'react-native-easy-grid';
 import Icon1 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/Entypo';
@@ -51,16 +51,24 @@ export default class NewsDivs extends Component {
                 let topHeadlineHeight = ScreenHeight * .15;
                 let bottomFooterHeight = ScreenHeight * .06;
                 let midArticleHeight = ScreenHeight * .75 - topHeadlineHeight;
-                let midArticleBottomMargin = ScreenHeight * .04;
+                let midArticleBottomMargin = ScreenHeight * .03;
+                let bottomCmntBoxPos = ScreenHeight * 0.75 ;
+
+                let articleMarginTop = ScreenHeight * 0.03;
 
                 let scrollMarginTop;
-                console.log("value of hasScrolled: ");
-                console.log(this.props.hasScrolled);
+                //console.log("value of hasScrolled: ");
+                //console.log(this.props.hasScrolled);
                 if(this.props.hasScrolled){
                         scrollMarginTop = "18%";
                 }
                 else{
                         scrollMarginTop = "0%";
+                }
+                console.log("HEADLINE LENGTH : " + this.props.headline.length);
+                if(this.props.headline.length>17){
+                        articleMarginTop = ScreenHeight * 0.01;
+                        midArticleHeight -= ScreenHeight * .03;
                 }
 
 
@@ -69,27 +77,28 @@ export default class NewsDivs extends Component {
 
                 //CREATE TOP HEADLINE DIV
                 let topHeadline =
-                        <Content style={{height : topHeadlineHeight, marginTop: scrollMarginTop}} scrollEnabled={ false }>
-                                <Grid>
-                                    <Col style={{height: 100, width: '25%', paddingLeft: '6.5%', paddingTop: '5%' }}>
-                                        <Thumbnail square source={require('./img//newsThumbnail3.png')}/>
-                                    </Col>
-                                    <Col style={{height: 100, width: '75%', paddingTop: "5%" }}>
-                                        <Text style={{fontWeight: "bold", fontSize: 30}}>{this.props.headline}</Text>
-                                        <View style={{flex: 1, flexDirection: "row"}}>
-                                            <View style={{flex: 1, flexDirection: "row"}}>
-                                                <Icon1 name="clock" size={18} style={{color: "black", top: ".1%"}}/>
-                                                <Text note> {this.props.time} ago</Text>
-                                            </View>
+                        <CardItem scrollEnabled={ false }>
+                                <Left>
+                                        <Thumbnail square source={require('./img//newsThumbnail3.png')} />
+                                        <Body>
+                                                <Text style={{fontWeight: "bold", fontSize: 30}}>{this.props.headline}</Text>
+                                                <View style={{flex: 1, flexDirection: "row"}}>
+                                                        <View style={{flex: 1, flexDirection: "row"}}>
+                                                                <Icon1 name="clock" size={18} style={{color: "black", top: ".1%"}}/>
+                                                                <Text note> {this.props.time}</Text>
+                                                        </View>
 
-                                            <View style={{flex: 1, flexDirection: "row"}}>
-                                                <Icon2 name="attachment" size={16} style={{color: "black", top: ".1%"}}/>
-                                                <Text note> {this.props.attachmentTotal} Attachment</Text>
-                                            </View>
-                                        </View>
-                                    </Col>
-                                </Grid>
-                        </Content>
+                                                        <View style={{flex: 1, flexDirection: "row"}}>
+                                                                <Icon2 name="attachment" size={16} style={{color: "black", top: ".1%"}}/>
+                                                                <Text note> {this.props.attachmentTotal} Attachment</Text>
+                                                        </View>
+                                                </View>
+
+
+                                        </Body>
+                                </Left>
+                        </CardItem>
+
 
 
                 //CREATE BOTTOM COMMENT FOOTER
@@ -158,11 +167,13 @@ export default class NewsDivs extends Component {
                 //CREATE MIDDLE NEWS ARTICLE DIV
                 let midNewsArticle =
 
-                        <Content style={{marginBottom: midArticleBottomMargin,height: midArticleHeight}} scrollEnabled={ true }>
+
+                        <Content style={{marginBottom: midArticleBottomMargin,height: midArticleHeight, backgroundColor: "yellow", marginTop: articleMarginTop}}>
                                 <Text style={{paddingLeft: '6%', paddingRight: '6%', paddingTop: '3%', paddingBottom: '10%'}}>
                                         {this.props.article}
                                 </Text>
                         </Content>
+
 
 
 
