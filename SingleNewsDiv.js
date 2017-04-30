@@ -77,7 +77,7 @@ export default class NewsDivs extends Component {
 
                 //CREATE TOP HEADLINE DIV
                 let topHeadline =
-                        <CardItem scrollEnabled={ false }>
+                        <CardItem scrollEnabled={ false } style={{backgroundColor: this.state.backgroundColor}}>
                                 <Left>
                                         <Thumbnail square source={require('./img//newsThumbnail3.png')} />
                                         <Body>
@@ -168,7 +168,7 @@ export default class NewsDivs extends Component {
                 let midNewsArticle =
 
 
-                        <Content style={{marginBottom: midArticleBottomMargin,height: midArticleHeight, backgroundColor: "yellow", marginTop: articleMarginTop}}>
+                        <Content style={{marginBottom: midArticleBottomMargin,height: midArticleHeight, marginTop: articleMarginTop}}>
                                 <Text style={{paddingLeft: '6%', paddingRight: '6%', paddingTop: '3%', paddingBottom: '10%'}}>
                                         {this.props.article}
                                 </Text>
