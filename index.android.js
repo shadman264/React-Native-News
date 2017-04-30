@@ -37,6 +37,7 @@ export default class AwesomeProject extends Component {
                     hasScrolled: false,
                     newsDivRemoteData: null,
                 };
+                //this.scrollHandler = this.scrollHandler.bind(this);
 
         }
 
@@ -98,12 +99,14 @@ export default class AwesomeProject extends Component {
                 let remoteNewsDivs;
                 if(this.state.newsDivRemoteData!=null){
 
+                        let scrollHandlerVar  = this.scrollHandler.bind(this);
+                        //console.log(scrollHandlerVar);
                         remoteNewsDivs =
                                 this.state.newsDivRemoteData.map(function (obj) {
                                         console.log(obj);
                                         let time = moment(obj.createdAt).format('ll');
                                         return (
-                                                <NewsDiv key={obj._id} headline={obj.title} time={time} attachmentTotal="7" abstract={obj.description} commentsTotal="10" scrollHandler={this.scrollHandler.bind(this)}/>
+                                                <NewsDiv key={obj._id} headline={obj.title} time={time} attachmentTotal="7" abstract={obj.description} commentsTotal="10" scrollHandler={scrollHandlerVar}/>
 
                                         )
                                 });
