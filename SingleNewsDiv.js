@@ -81,7 +81,7 @@ export default class NewsDivs extends Component {
 
                 //CREATE TOP HEADLINE DIV
                 let topHeadline =
-                        <CardItem scrollEnabled={ false } style={{backgroundColor: this.state.backgroundColor}}>
+                        <CardItem scrollEnabled={ false } style={{backgroundColor: "rgba(0,0,0,0.1)"}}>
                                 <Left>
                                         <Thumbnail square source={require('./img//newsThumbnail3.png')} />
                                         <Body>
