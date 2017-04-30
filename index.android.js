@@ -36,6 +36,7 @@ export default class AwesomeProject extends Component {
                     marginTopVal: "",
                     hasScrolled: false,
                     newsDivRemoteData: null,
+                    clickedNews : false,
                 };
                 //this.scrollHandler = this.scrollHandler.bind(this);
 
@@ -156,7 +157,18 @@ export default class AwesomeProject extends Component {
          }
 
 
-         
+        let singleNewsCall;
+        if(this.state.clickedNews==true){
+                singleNewsCall =
+                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="single"/>
+
+        }
+        else{
+                singleNewsCall =
+                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="collection"/>
+        }
+
+
 
 
          //<SingleNewsDiv headline="Latest News 1" time="4 Hours" attachmentTotal="7" article={textData} commentsTotal="10" scrollHandler = {this.scrollHandler.bind(this)}/>
@@ -165,7 +177,7 @@ export default class AwesomeProject extends Component {
         return (
                 <Container style={{flex:1}}>
                         {header}
-                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="collection"/>
+                        {singleNewsCall}
                         {bigBoss}
                 </Container>
 

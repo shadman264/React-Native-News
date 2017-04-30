@@ -20,6 +20,7 @@ export default class NewsDivs extends Component {
                     backgroundColor: "white",
                     cmtBackgroundColor: "#e6e4e2",
                     margin: "3%",
+                    paddingVal: 0,
 
                 };
         }
@@ -136,7 +137,7 @@ export default class NewsDivs extends Component {
                                                 onKeyPress={() => this.setState({ modalMarginTop: "10%", modalMarginBottom: "10%"})}/>
 
                                             <Button full style={{ borderRadius: 6, backgroundColor: "#5a2fd1"}}
-                                                onPress={() => this.setState({ modalVisible: false, backgroundColor: "white", cmtBackgroundColor: "#e6e4e2", margin: "3%"})}>
+                                                onPress={() => this.setState({ paddingVal:0, modalVisible: false, backgroundColor: "white", cmtBackgroundColor: "#e6e4e2", margin: "3%"})}>
                                                 <Text style={{color: "white"}}>SUBMIT</Text>
                                             </Button>
                                         </Content>
@@ -158,7 +159,7 @@ export default class NewsDivs extends Component {
                                 containerStyle={{ marginLeft: 10 }}
                                 style={{ backgroundColor: '#5067FF' }}
                                 position="bottomRight"
-                                onPress={() => this.setState({ modalVisible: true, backgroundColor: "rgba(0,0,0,0.6)", cmtBackgroundColor: "rgba(0,0,0,0.6)", margin: 0})}>
+                                onPress={() => this.setState({ paddingVal: "3%",modalVisible: true, backgroundColor: "rgba(0,0,0,0.6)", cmtBackgroundColor: "rgba(0,0,0,0.6)", margin: 0})}>
                                         <Icon1 name="message" />
 
                         </Fab>
@@ -181,7 +182,7 @@ export default class NewsDivs extends Component {
                 //******************to print console.log you have to type "react-native log-android"******************
                 return (
                     <Container style={{backgroundColor: this.state.backgroundColor, margin: this.state.margin}}>
-                            <Content scrollEnabled={ false }>
+                            <Content scrollEnabled={ false } style={{padding: this.state.paddingVal}}>
                                 {topHeadline}
                                 {midNewsArticle}
                                 {bottomCommentBox}
