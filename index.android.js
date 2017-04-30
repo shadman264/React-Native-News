@@ -37,6 +37,7 @@ export default class AwesomeProject extends Component {
                     hasScrolled: false,
                     newsDivRemoteData: null,
                     clickedNews : false,
+                    clickedId: null,
                 };
                 //this.scrollHandler = this.scrollHandler.bind(this);
 
@@ -46,9 +47,9 @@ export default class AwesomeProject extends Component {
 
 
 
-        scrollHandler(headline,time,attachmentTotal,abstract,commentsTotal) {
+        scrollHandler(clickedId, headline,time,attachmentTotal,abstract,commentsTotal) {
                 //e.preventDefault();
-                console.log("I HAVE BEEN CLICKED");
+                console.log("I HAVE BEEN CLICKED: "+ clickedId);
                 //console.log(propVal);
                 this.setState({
                         scrollable: !this.state.scrollable,
@@ -57,6 +58,8 @@ export default class AwesomeProject extends Component {
                         attachmentTotal: attachmentTotal,
                         abstract: abstract,
                         commentsTotal: commentsTotal,
+                        clickedNews: true,
+                        clickedId: clickedId
 
                 })
         }
@@ -81,7 +84,9 @@ export default class AwesomeProject extends Component {
 
         navigate(){
                 this.setState({
-                        scrollable: true
+                        scrollable: true,
+                        clickedNews: false,
+                        clickedId: null,
                 })
         }
 
@@ -90,7 +95,8 @@ export default class AwesomeProject extends Component {
                 this.setState({
                         newsDivRemoteData: data
                 })
-                console.log("DATA reached");
+                console.log("DATA reached : ");
+                console.log(data);
 
 
         }
@@ -98,7 +104,7 @@ export default class AwesomeProject extends Component {
 
         render() {
                 let remoteNewsDivs;
-                if(this.state.newsDivRemoteData!=null){
+                if(this.state.newsDivRemoteData!=null && this.state.clickedNews==false){
 
                         let scrollHandlerVar  = this.scrollHandler.bind(this);
                         //console.log(scrollHandlerVar);
@@ -107,11 +113,13 @@ export default class AwesomeProject extends Component {
                                         console.log(obj);
                                         let time = moment(obj.createdAt).format('ll');
                                         return (
-                                                <NewsDiv key={obj._id} headline={obj.title} time={time} attachmentTotal="7" abstract={obj.description} commentsTotal="10" scrollHandler={scrollHandlerVar}/>
+                                                <NewsDiv key={obj._id} id={obj._id} headline={obj.title} time={time} attachmentTotal="7" abstract={obj.description} commentsTotal="10" scrollHandler={scrollHandlerVar}/>
 
                                         )
                                 });
                 }
+
+
 
         let textData = "Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options."
 
@@ -160,12 +168,13 @@ export default class AwesomeProject extends Component {
         let singleNewsCall;
         if(this.state.clickedNews==true){
                 singleNewsCall =
-                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="single"/>
+                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="single" clickedId={this.state.clickedId}/>
+                //console.log("AMI EKHANE DHUKSI");
 
         }
         else{
                 singleNewsCall =
-                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="collection"/>
+                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="collection" clickedId={this.state.clickedId}/>
         }
 
 

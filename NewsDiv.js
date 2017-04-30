@@ -23,7 +23,7 @@ export default class NewsDivs extends Component {
                 console.log("PRESS FROM NEWS DIV");
                 console.log(this.props);
                 //var propVal = {headline:this.props.headline, time:this.props.time, attachmentTotal:this.props.attachmentTotal, abstract:this.props.abstract, commentsTotal:this.props.commentsTotal};
-                this.props.scrollHandler(this.props.headline,this.props.time,this.props.attachmentTotal,this.props.abstract,this.props.commentsTotal);
+                this.props.scrollHandler(this.props.id, this.props.headline,this.props.time,this.props.attachmentTotal,this.props.abstract,this.props.commentsTotal);
                 this.setState({
                         clicked: true,
                         margin: 0
@@ -103,4 +103,6 @@ export default class NewsDivs extends Component {
 
 
 }
+
+
 

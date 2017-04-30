@@ -22,20 +22,29 @@ class WebsocketClient extends Component {
 
   render() {
 
-        var sth=Meteor.call('single.news', 'x3eWfAZKxBtKhJFEA', function(err, result){
-                console.log('single news');
-                console.log(result);
-        });
-        console.log('baire news');
-        console.log(sth);
+//        var sth=Meteor.call('single.news', 'x3eWfAZKxBtKhJFEA', function(err, result){
+//                console.log('single news');
+//                console.log(result);
+//        });
+//        console.log('baire news');
+//        console.log(sth);
         const { settings, todosReady, changed } = this.props;
         if(todosReady==true && this.state.called==false && this.props.type=="collection"){
                 console.log("TRUE FROM WEB");
                 this.props.setRemoteData(settings);
                 this.state.called = true;
         }
-        else if(todosReady==true && this.state.called==false && this.props.type=="single"){
-                console.log("SINGLE NEWS COLLECTING");
+        else if(this.state.called2==false && this.props.type=="single"){
+                this.state.called2 = true;
+                console.log("SINGLE NEWS COLLECTING FOR "+ this.props.clickedId);
+                var dataSetterFunc = this.props.setRemoteData;
+                var sth=Meteor.call('single.news', this.props.clickedId, function(err, result){
+                        //console.log('news is : ');
+                        //console.log(result);
+                        //this.props.setRemoteData(result);
+                        dataSetterFunc(result);
+                });
+
 
         }
 

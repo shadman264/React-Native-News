@@ -39,6 +39,9 @@ export default class NewsDivs extends Component {
                 return true;
         }
 
+        handleCloseModal () {
+            this.setState({ paddingVal:0, modalVisible: false, backgroundColor: "white", cmtBackgroundColor: "#e6e4e2", margin: "3%" });
+        }
 
 
 
@@ -121,7 +124,7 @@ export default class NewsDivs extends Component {
                                         animationType={"slide"}
                                         transparent={true}
                                         visible={this.state.modalVisible}
-
+                                        onRequestClose={this.handleCloseModal.bind(this)}
 
                                         >
 
