@@ -8,6 +8,8 @@ import Icon1 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/Entypo';
 import Icon3 from 'react-native-vector-icons/Foundation';
 
+import WebsocketClient from './WebsocketClient';
+
 
 export default class NewsDivs extends Component {
 
@@ -21,6 +23,7 @@ export default class NewsDivs extends Component {
                     cmtBackgroundColor: "#e6e4e2",
                     margin: "3%",
                     paddingVal: 0,
+                    cmntButtClick: false,
 
                 };
         }
@@ -47,9 +50,7 @@ export default class NewsDivs extends Component {
 
         render() {
 
-//                var s = this.props.textData.substring(0, 480);
-//                if(this.props.textData.length>480)
-//                s = s.concat("...");
+                let cmntWSCall;
 
                 let ScreenHeight = Dimensions.get("window").height;
                 let topHeadlineHeight = ScreenHeight * .15;
@@ -140,7 +141,8 @@ export default class NewsDivs extends Component {
                                                 onKeyPress={() => this.setState({ modalMarginTop: "10%", modalMarginBottom: "10%"})}/>
 
                                             <Button full style={{ borderRadius: 6, backgroundColor: "#5a2fd1"}}
-                                                onPress={() => this.setState({ paddingVal:0, modalVisible: false, backgroundColor: "white", cmtBackgroundColor: "#e6e4e2", margin: "3%"})}>
+                                                onPress={() => {this.setState({ paddingVal:0, modalVisible: false, backgroundColor: "white", cmtBackgroundColor: "#e6e4e2", margin: "3%", cmntButtClick:true})}
+                                                                }>
                                                 <Text style={{color: "white"}}>SUBMIT</Text>
                                             </Button>
                                         </Content>
@@ -180,6 +182,15 @@ export default class NewsDivs extends Component {
 
 
 
+                //CREATE COMMENT SUBMIT CALL WS
+                if(this.state.cmntButtClick==true){
+                        console.log("COMMENT ADD IS GOING TO BE HAPPENDED!!!!!!!!");
+                        this.state.cmntButtClick = false;
+                        cmntWSCall =
+                                <WebsocketClient type="add.comment" type="cmnt" clickedId={this.props.id}/>
+
+                }
+
 
 
                 //******************to print console.log you have to type "react-native log-android"******************
@@ -191,6 +202,7 @@ export default class NewsDivs extends Component {
                                 {bottomCommentBox}
                                 {bottomFloatingCommentButton}
                                 {modalBox}
+                                {cmntWSCall}
                             </Content>
                     </Container>
                 );

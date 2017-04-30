@@ -38,8 +38,6 @@ export default class AwesomeProject extends Component {
                     newsDivRemoteData: null,
                     clickedNews : false,
                     clickedId: null,
-                    remoteClick: false,
-                    remoteClick2: false,
                     callWebsocket: true,
                 };
                 //this.scrollHandler = this.scrollHandler.bind(this);
@@ -64,8 +62,6 @@ export default class AwesomeProject extends Component {
                         clickedNews: true,
                         clickedId: clickedId,
                         newsDivRemoteData: null,
-                        remoteClick: true,
-                        remoteClick2: false,
                         callWebsocket: true,
 
                 })
@@ -102,8 +98,6 @@ export default class AwesomeProject extends Component {
                     newsDivRemoteData: null,
                     clickedNews : false,
                     clickedId: null,
-                    remoteClick: false,
-                    remoteClick2: false,
                     callWebsocket: true,
                 })
         }
@@ -181,7 +175,7 @@ export default class AwesomeProject extends Component {
 
         singleNewsPage =
                <Content style={{flex:1,flexDirection:'column'}} scrollEnabled={ false }>
-                       <SingleNewsDiv navigate={this.navigate.bind(this)} hasScrolled={this.state.hasScrolled} headline={this.state.headline} time={this.state.time} attachmentTotal={this.state.attachmentTotal} article={this.state.abstract} commentsTotal={this.state.commentsTotal}/>
+                       <SingleNewsDiv id={this.state.clickedId} navigate={this.navigate.bind(this)} hasScrolled={this.state.hasScrolled} headline={this.state.headline} time={this.state.time} attachmentTotal={this.state.attachmentTotal} article={this.state.abstract} commentsTotal={this.state.commentsTotal}/>
                </Content>
 
          let bigBoss;
@@ -197,7 +191,7 @@ export default class AwesomeProject extends Component {
         let singleNewsCall;
         if(this.state.callWebsocket==true && this.state.clickedNews==true){
                 singleNewsCall =
-                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="single" clickedId={this.state.clickedId} clicked={this.state.remoteClick} clicked2={this.state.remoteClick2}/>
+                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="single" clickedId={this.state.clickedId}/>
                 //console.log("AMI EKHANE DHUKSI");
                 this.state.callWebsocket =false;
 
@@ -205,7 +199,7 @@ export default class AwesomeProject extends Component {
         else if(this.state.callWebsocket==true && this.state.clickedNews==false){
 
                 singleNewsCall =
-                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="collection" clickedId={this.state.clickedId}  clicked={this.state.remoteClick} clicked2={this.state.remoteClick2}/>
+                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="collection" clickedId={this.state.clickedId}/>
                 this.state.callWebsocket =false;
         }
 

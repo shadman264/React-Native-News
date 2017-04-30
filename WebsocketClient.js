@@ -46,6 +46,24 @@ class WebsocketClient extends Component {
 
         }
 
+        else if(todosReady==true && this.props.type=="cmnt"){
+                //this.state.called2 = true;
+                console.log("COMMENTING FOR "+ this.props.clickedId);
+                var sth=Meteor.call('add.comment', this.props.clickedId, function(err, result){
+                        console.log('callBakc for add cmnt call is : ');
+                        if(!err)
+                                console.log(result);
+                        else{
+                                console.log("ERROR : ");
+                                console.log(err);
+                        }
+                        //this.props.setRemoteData(result);
+
+                });
+
+
+        }
+
 
 
         return(
