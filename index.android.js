@@ -38,6 +38,9 @@ export default class AwesomeProject extends Component {
                     newsDivRemoteData: null,
                     clickedNews : false,
                     clickedId: null,
+                    remoteClick: false,
+                    remoteClick2: false,
+                    callWebsocket: true,
                 };
                 //this.scrollHandler = this.scrollHandler.bind(this);
 
@@ -59,7 +62,11 @@ export default class AwesomeProject extends Component {
                         abstract: abstract,
                         commentsTotal: commentsTotal,
                         clickedNews: true,
-                        clickedId: clickedId
+                        clickedId: clickedId,
+                        newsDivRemoteData: null,
+                        remoteClick: true,
+                        remoteClick2: false,
+                        callWebsocket: true,
 
                 })
         }
@@ -84,9 +91,20 @@ export default class AwesomeProject extends Component {
 
         navigate(){
                 this.setState({
-                        scrollable: true,
-                        clickedNews: false,
-                        clickedId: null,
+                    scrollable: true,
+                    headline: "",
+                    time: "",
+                    attachmentTotal: "",
+                    abstract: "",
+                    commentsTotal: "",
+                    marginTopVal: "",
+                    hasScrolled: false,
+                    newsDivRemoteData: null,
+                    clickedNews : false,
+                    clickedId: null,
+                    remoteClick: false,
+                    remoteClick2: false,
+                    callWebsocket: true,
                 })
         }
 
@@ -104,6 +122,7 @@ export default class AwesomeProject extends Component {
 
         render() {
                 let remoteNewsDivs;
+                let singleNewsPage;
                 if(this.state.newsDivRemoteData!=null && this.state.clickedNews==false){
 
                         let scrollHandlerVar  = this.scrollHandler.bind(this);
@@ -117,6 +136,16 @@ export default class AwesomeProject extends Component {
 
                                         )
                                 });
+                }
+                else if(this.state.newsDivRemoteData!=null && this.state.clickedNews==true){
+                        console.log("SINGLE NEWS METHOD FIRING!!!"+ this.state.clickedId);
+                        let obj = this.state.newsDivRemoteData;
+                        let navFunc = this.navigate.bind(this);
+                        let time = moment(obj.createdAt).format('ll');
+                        singleNewsPage =
+                                <Content style={{flex:1,flexDirection:'column'}} scrollEnabled={ false }>
+                                       <SingleNewsDiv navigate={navFunc} hasScrolled={this.state.hasScrolled} headline={obj.title} time={time} attachmentTotal="7" article={obj.description} commentsTotal="10"/>
+                               </Content>
                 }
 
 
@@ -150,7 +179,7 @@ export default class AwesomeProject extends Component {
                        {remoteNewsDivs}
                </Content>
 
-        let singleNewsPage =
+        singleNewsPage =
                <Content style={{flex:1,flexDirection:'column'}} scrollEnabled={ false }>
                        <SingleNewsDiv navigate={this.navigate.bind(this)} hasScrolled={this.state.hasScrolled} headline={this.state.headline} time={this.state.time} attachmentTotal={this.state.attachmentTotal} article={this.state.abstract} commentsTotal={this.state.commentsTotal}/>
                </Content>
@@ -166,15 +195,18 @@ export default class AwesomeProject extends Component {
 
 
         let singleNewsCall;
-        if(this.state.clickedNews==true){
+        if(this.state.callWebsocket==true && this.state.clickedNews==true){
                 singleNewsCall =
-                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="single" clickedId={this.state.clickedId}/>
+                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="single" clickedId={this.state.clickedId} clicked={this.state.remoteClick} clicked2={this.state.remoteClick2}/>
                 //console.log("AMI EKHANE DHUKSI");
+                this.state.callWebsocket =false;
 
         }
-        else{
+        else if(this.state.callWebsocket==true && this.state.clickedNews==false){
+
                 singleNewsCall =
-                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="collection" clickedId={this.state.clickedId}/>
+                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="collection" clickedId={this.state.clickedId}  clicked={this.state.remoteClick} clicked2={this.state.remoteClick2}/>
+                this.state.callWebsocket =false;
         }
 
 
