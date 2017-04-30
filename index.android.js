@@ -135,7 +135,7 @@ export default class AwesomeProject extends Component {
         return (
                 <Container style={{flex:1}}>
                         {header}
-                        {bigBoss}
+                        <WebsocketClient/>
                 </Container>
 
         );

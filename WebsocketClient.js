@@ -26,6 +26,15 @@ class WebsocketClient extends Component {
     settings.map(function (obj) {
         console.log(obj.title);
     });
+    let bob =
+        settings.map(function (obj) {
+               return (
+                               <Text key={obj._id}>
+                                   {obj.title}
+                               </Text>
+
+               )
+           });
     console.log(settings);
     console.log(todosReady);
     console.log("Hi ends: ");
@@ -37,11 +46,7 @@ class WebsocketClient extends Component {
         <Text>bla</Text>
           {!todosReady && <Text>Not ready</Text>}
 
-          <MeteorListView
-            collection="fetch.news"
-            options={{sort: {createdAt: -1}}}
-            renderRow={this.renderItem}
-          />
+                {bob}
 
           <Button>
                 <Text>HELLO</Text>
