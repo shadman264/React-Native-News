@@ -1,75 +1,62 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
-import {
-        AppRegistry,
-        StyleSheet,
-        View,
-} from 'react-native';
-import { Container, Text, Content,Button} from 'native-base';
-import Meteor, {createContainer} from 'react-native-meteor';
+import { View, Text } from 'react-native';
+import {Button} from 'native-base';
+import Meteor, { createContainer, MeteorListView } from 'react-native-meteor';
 
-const SERVER_URL = 'ws://durbintest.pro/websocket';
-
+Meteor.connect('ws://durbintest.pro/websocket');//do this only once
 
 class WebsocketClient extends Component {
-
         constructor(props) {
-                super(props);
-                this.state = {
-                        text: true,
-                        subscribe: false,
-                };
+                        super(props);
+                        this.state = {
+                            clicked: false,
 
-        }
 
-        componentWillMount() {
-            Meteor.connect(SERVER_URL);
-          }
 
-        pressed(){
-                this.setState({
-                        text: !this.state.text,
+                        };
+                }
+  renderItem(todo) {
+    return (
+      <Text>{todo.title}</Text>
+    );
+  }
+  render() {
+    const { settings, todosReady } = this.props;
+    console.log("HI starts");
+    settings.map(function (obj) {
+        console.log(obj.title);
+    });
+    console.log(settings);
+    console.log(todosReady);
+    console.log("Hi ends: ");
+    //console.log(Meteor.getData());
+    //console.log(Meteor.collection('fetch.news').get('hYhHcDXNWhwWQSfab'));
 
-                });
-        }
+    return(
+      <View>
+        <Text>bla</Text>
+          {!todosReady && <Text>Not ready</Text>}
 
-        render() {
-        console.log('bla');
-        //console.log(this.props);
-        //Meteor.subscribe('fetch.news');
-        //console.log(Meteor.collection('fetch.news'));
+          <MeteorListView
+            collection="fetch.news"
+            options={{sort: {createdAt: -1}}}
+            renderRow={this.renderItem}
+          />
 
-        let vv =
-                <Text>
-                      Item Count: {this.props.count}
-                </Text>
-
-        return (
-                <Container>
-                        <Content>
-                                <Button onPress={this.pressed.bind(this)}>
-                                        <Text>HELLO</Text>
-                                </Button>
-                                {vv}
-
-                        </Content>
-                </Container>
-
-        );
-        }
+          <Button>
+                <Text>HELLO</Text>
+          </Button>
+      </View>
+    )
+  }
 }
 
-export default createContainer(() => {
+export default createContainer(params=>{
+  const handle = Meteor.subscribe('fetch.news');
   Meteor.subscribe('fetch.news');
-  console.log('kjh');
+
   return {
-        count: Meteor.collection('fetch.news').find().length,
+    todosReady: handle.ready(),
+    settings: Meteor.collection('News').find()
   };
-}, WebsocketClient);
-
-
+}, WebsocketClient)
