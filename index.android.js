@@ -154,13 +154,18 @@ export default class AwesomeProject extends Component {
                 console.log("HAS SCROLLED: "+this.state.hasScrolled);
                  bigBoss = singleNewsPage;
          }
+
+
+         
+
+
          //<SingleNewsDiv headline="Latest News 1" time="4 Hours" attachmentTotal="7" article={textData} commentsTotal="10" scrollHandler = {this.scrollHandler.bind(this)}/>
 
 
         return (
                 <Container style={{flex:1}}>
                         {header}
-                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)}/>
+                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)} type="collection"/>
                         {bigBoss}
                 </Container>
 
