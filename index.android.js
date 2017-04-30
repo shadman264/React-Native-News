@@ -16,6 +16,8 @@ import NewsDiv from './NewsDiv';
 import SingleNewsDiv from './SingleNewsDiv';
 import Icon2 from 'react-native-vector-icons/Entypo';
 
+import moment from 'moment'
+
 import WebsocketClient from './WebsocketClient';
 
 
@@ -33,6 +35,7 @@ export default class AwesomeProject extends Component {
                     commentsTotal: "",
                     marginTopVal: "",
                     hasScrolled: false,
+                    newsDivRemoteData: null,
                 };
 
         }
@@ -80,9 +83,31 @@ export default class AwesomeProject extends Component {
                 })
         }
 
+        setRemoteData(data){
+                console.log("entered in set_remote_data");
+                this.setState({
+                        newsDivRemoteData: data
+                })
+                console.log("DATA reached");
+
+
+        }
+
 
         render() {
+                let remoteNewsDivs;
+                if(this.state.newsDivRemoteData!=null){
 
+                        remoteNewsDivs =
+                                this.state.newsDivRemoteData.map(function (obj) {
+                                        console.log(obj);
+                                        let time = moment(obj.createdAt).format('ll');
+                                        return (
+                                                <NewsDiv key={obj._id} headline={obj.title} time={time} attachmentTotal="7" abstract={obj.description} commentsTotal="10" scrollHandler={this.scrollHandler.bind(this)}/>
+
+                                        )
+                                });
+                }
 
         let textData = "Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.Card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options."
 
@@ -110,10 +135,7 @@ export default class AwesomeProject extends Component {
         //CREATE NEWS FEED VAR
         let newsFeed =
                <Content style={{flex:1,flexDirection:'column'}} scrollEnabled={ this.state.scrollable} onScroll={this.handleScroll.bind(this)}>
-                       <NewsDiv headline="Latest News 1" time="4 Hours" attachmentTotal="7" abstract={textData} commentsTotal="10" scrollHandler = {this.scrollHandler.bind(this)}/>
-                       <NewsDiv headline="Latest News 2" time="5 Hours" attachmentTotal="8" abstract={textData} commentsTotal="11" scrollHandler = {this.scrollHandler.bind(this)}/>
-                       <NewsDiv headline="Latest News 3" time="6 Hours" attachmentTotal="9" abstract={textData} commentsTotal="12" scrollHandler = {this.scrollHandler.bind(this)}/>
-
+                       {remoteNewsDivs}
                </Content>
 
         let singleNewsPage =
@@ -135,7 +157,8 @@ export default class AwesomeProject extends Component {
         return (
                 <Container style={{flex:1}}>
                         {header}
-                        <WebsocketClient/>
+                        <WebsocketClient setRemoteData={this.setRemoteData.bind(this)}/>
+                        {bigBoss}
                 </Container>
 
         );
